@@ -1,5 +1,5 @@
 express = require('express')
-webot = require('webot')
+webot = require('weixin-robot')
 
 app = express()
 
@@ -10,17 +10,6 @@ webot.set('subscribe',
   handler: (info)-> 'Thank you for subscribe.'
 )
 
-app.get('/html5移动开发', (req, res, next)->
-  message = req.query.message
+webot.watch(app, { token: 'html5移动开发' });
 
-  webot.reply(
-    text: message, 
-  ,(err, info)->
-    return res.json({ r: err }) if err 
-
-    res.json(
-      r: 0
-      reply: info.reply
-    )
-  )
-)
+app.listen(80);
