@@ -1,29 +1,18 @@
-/*
- * BAE Node.js application demo
- */
-
-/* Port which provided by BAE platform */
 var port = process.env.APP_PORT;
 
-/*
- * Create an HTTP server
- * which is as similar as http://nodejs.org/api/http.html mentioned
- */
+var express = require('express');
+var webot = require('weixin-robot');
 
-var http = require('http');
+var app = express().use(express.logger());
 
-var server = http.createServer(function(req, res) {
-    res.writeHead(200, {
-        'Content-Type': 'text/html'
-    });
+webot.set('hi', "Hi, I'm Webot.");
 
-    var body = '<html>' + '<body>' +
-               '<h1>Welcome to Baidu Cloud!</h1>' +
-               '</body>' + '</html>';
-
-    res.end(body);
+webot.set('subscribe',{
+  pattern: function(info){ return info.event === 'subscribe'},
+  handler: function(info){return 'Thank you for subscribe.'}
 });
 
-server.listen(port);
+webot.watch(app, { token:'superwolf', path: 'html5移动开发' });
+app.listen(port);
 
 /* Enjoy it! */
