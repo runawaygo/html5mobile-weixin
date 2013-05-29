@@ -3,7 +3,8 @@ webot = require('weixin-robot')
 
 app = express().use(express.logger())
 
-webot.set('hi', "Hi, I'm Webot.")
+# webot.set('hi', "Hi, I'm Webot.")
+webot.set('小狗', "汪汪汪.")
 
 webot.set('subscribe',
   pattern: (info)-> info.event is 'subscribe'
