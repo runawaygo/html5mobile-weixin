@@ -10,6 +10,6 @@ webot.set('subscribe',
   handler: (info)-> 'Thank you for subscribe.'
 )
 
-webot.watch(app, { token:'superwolf', path: 'html5移动开发' })
+webot.watch(app, { token:'superwolf', path: '/html5mobile' })
 
 app.listen(80)
